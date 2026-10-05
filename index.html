@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beauty by Anet — Lash &amp; Brow Studio in Sherman Oaks, CA</title>
+<meta name="description" content="Beauty by Anet is a lash and brow studio in Sherman Oaks, CA. Volume and classic lash sets, keratin lifts, brow shaping, lamination and tinting. Book your appointment today.">
+
+<!-- TODO (owner): swap this favicon for a real logo mark. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#128105;</text></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --cream:#FBF7F2;
+  --cream-2:#F5EDE4;
+  --sand:#EDE0D3;
+  --blush:#E3C6B8;
+  --rose:#B87F6D;
+  --rose-dark:#8E5B4C;
+  --gold:#B08D57;
+  --ink:#2B2320;
+  --ink-2:#4A3F39;
+  --muted:#8A7A71;
+  --line:rgba(43,35,32,.12);
+
+  --serif:"Cormorant Garamond",Georgia,serif;
+  --sans:"Jost","Helvetica Neue",Arial,sans-serif;
+
+  --pad:clamp(1.25rem,5vw,5rem);
+  --maxw:1240px;
+  --r:14px;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --shadow:0 18px 50px -24px rgba(70,45,38,.32);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  font-size:clamp(1rem,.96rem + .18vw,1.075rem);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+body.nav-open{overflow:hidden}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;line-height:1.08;margin:0;letter-spacing:.005em}
+p{margin:0 0 1rem}
+p:last-child{margin-bottom:0}
+
+::selection{background:var(--blush);color:var(--ink)}
+
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--pad)}
+.section{padding-block:clamp(4.5rem,9vw,8.5rem)}
+.section--tint{background:var(--cream-2)}
+.section--sand{background:var(--sand)}
+
+.eyebrow{
+  font-size:.7rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--rose-dark);font-weight:500;margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:.85rem;
+}
+.eyebrow::before{content:"";width:clamp(24px,5vw,52px);height:1px;background:currentColor;opacity:.5;flex:none}
+
+.h2{font-size:clamp(2.1rem,1.3rem + 3.4vw,3.65rem)}
+.h2 em{font-style:italic;color:var(--rose)}
+.lede{font-size:clamp(1.05rem,1rem + .35vw,1.2rem);color:var(--ink-2);max-width:56ch;margin-top:1.25rem}
+.head{max-width:62ch}
+.head--center{margin-inline:auto;text-align:center}
+.head--center .lede{margin-inline:auto}
+.head--center .eyebrow{justify-content:center}
+
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* reveal on scroll */
+[data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  *{animation:none!important}
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  padding:1.02rem 2rem;border-radius:100px;
+  font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  transition:transform .45s var(--ease),background .35s,color .35s,box-shadow .45s var(--ease),border-color .35s;
+  white-space:nowrap;
+}
+.btn--fill{background:var(--ink);color:var(--cream);box-shadow:0 12px 30px -16px rgba(43,35,32,.8)}
+.btn--fill:hover{background:var(--rose-dark);transform:translateY(-3px);box-shadow:0 20px 40px -18px rgba(142,91,76,.7)}
+.btn--ghost{border:1px solid var(--line);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--cream);transform:translateY(-3px)}
+.btn--light{background:var(--cream);color:var(--ink)}
+.btn--light:hover{background:#fff;transform:translateY(-3px)}
+.btn--outline-light{border:1px solid rgba(251,247,242,.4);color:var(--cream)}
+.btn--outline-light:hover{background:var(--cream);color:var(--ink);transform:translateY(-3px)}
+.btn svg{width:15px;height:15px;flex:none}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.header{
+  position:fixed;inset:0 0 auto;z-index:100;
+  transition:background .5s var(--ease),box-shadow .5s,padding .5s var(--ease);
+  padding-block:1.35rem;
+}
+.header.stuck{background:rgba(251,247,242,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding-block:.8rem}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
+
+.brand{display:flex;flex-direction:column;line-height:1;position:relative;z-index:2}
+.brand b{font-family:var(--serif);font-size:1.62rem;font-weight:500;letter-spacing:.06em}
+.brand small{font-size:.56rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-top:.42rem;font-weight:400}
+
+.navlinks{display:flex;align-items:center;gap:2.15rem}
+.navlinks a{
+  font-size:.75rem;letter-spacing:.19em;text-transform:uppercase;font-weight:400;
+  position:relative;padding-block:.3rem;transition:color .3s;white-space:nowrap;
+}
+.navlinks a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--rose);
+  transition:width .45s var(--ease);
+}
+.navlinks a:hover{color:var(--rose-dark)}
+.navlinks a:hover::after{width:100%}
+.navlinks .btn{padding:.82rem 1.5rem;font-size:.7rem}
+
+.burger{display:none;width:44px;height:44px;position:relative;z-index:2;margin-right:-10px}
+.burger span{position:absolute;left:11px;width:22px;height:1.5px;background:var(--ink);transition:transform .45s var(--ease),opacity .3s}
+.burger span:nth-child(1){top:17px}
+.burger span:nth-child(2){top:22.5px}
+.burger span:nth-child(3){top:28px}
+body.nav-open .burger span:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+body.nav-open .burger span:nth-child(2){opacity:0}
+body.nav-open .burger span:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+
+@media (max-width:1000px){
+  .navlinks{
+    position:fixed;inset:0;flex-direction:column;justify-content:center;gap:.4rem;
+    background:var(--cream);padding-top:5rem;
+    clip-path:circle(0% at calc(100% - 40px) 40px);
+    transition:clip-path .7s var(--ease);
+    z-index:1;
+  }
+  body.nav-open .navlinks{clip-path:circle(150% at calc(100% - 40px) 40px)}
+  .navlinks a{font-family:var(--serif);font-size:2rem;letter-spacing:.03em;text-transform:none;padding:.5rem 0}
+  .navlinks a::after{display:none}
+  .navlinks .btn{margin-top:1.5rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+  .burger{display:block}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  padding-block:9rem 5rem;overflow:hidden;
+  background:
+    radial-gradient(120% 90% at 82% 12%,#F6E7DC 0%,rgba(246,231,220,0) 58%),
+    radial-gradient(100% 80% at 8% 92%,#EFE0D6 0%,rgba(239,224,214,0) 60%),
+    var(--cream);
+}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2.5rem,5vw,5rem);align-items:center;width:100%}
+
+.hero h1{font-size:clamp(3rem,1.4rem + 6.6vw,6.1rem);line-height:.98;letter-spacing:-.005em}
+.hero h1 em{font-style:italic;color:var(--rose)}
+.hero .lede{margin-top:1.7rem;max-width:46ch}
+.hero__cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2.4rem}
+
+.hero__trust{
+  display:flex;flex-wrap:wrap;gap:1.9rem;margin-top:3.1rem;padding-top:1.9rem;
+  border-top:1px solid var(--line);
+}
+.hero__trust div{min-width:78px}
+.hero__trust b{display:block;font-family:var(--serif);font-size:1.85rem;line-height:1;color:var(--rose-dark)}
+.hero__trust span{font-size:.68rem;letter-spacing:.19em;text-transform:uppercase;color:var(--muted)}
+
+/* hero art */
+.hero__art{position:relative;aspect-ratio:4/4.35}
+.hero__art-frame{
+  position:absolute;inset:0;border-radius:210px 210px 18px 18px;overflow:hidden;
+  background:linear-gradient(150deg,#E8CFC1 0%,#CFA290 42%,#A97461 100%);
+  box-shadow:var(--shadow);
+}
+/* TODO (owner): replace this gradient block with a real photo:
+   <img src="images/hero.jpg" alt="Anet applying a lash set" class="hero__art-frame"> */
+.hero__art-frame::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(38% 30% at 62% 30%,rgba(255,255,255,.34),transparent 70%),
+    repeating-linear-gradient(115deg,rgba(255,255,255,.06) 0 2px,transparent 2px 9px);
+  mix-blend-mode:soft-light;
+}
+.hero__badge{
+  position:absolute;left:-6%;bottom:9%;z-index:2;
+  background:rgba(251,247,242,.94);backdrop-filter:blur(10px);
+  padding:1.15rem 1.5rem;border-radius:var(--r);box-shadow:var(--shadow);
+  max-width:220px;
+}
+.hero__badge b{font-family:var(--serif);font-size:1.3rem;display:block;line-height:1.15}
+.hero__badge p{font-size:.78rem;color:var(--muted);margin:.35rem 0 0;line-height:1.5}
+.hero__chip{
+  position:absolute;top:7%;right:-4%;z-index:2;
+  background:var(--ink);color:var(--cream);border-radius:100px;
+  padding:.68rem 1.2rem;font-size:.68rem;letter-spacing:.17em;text-transform:uppercase;
+  box-shadow:var(--shadow);
+}
+.hero__chip i{font-style:normal;color:var(--blush)}
+
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr;gap:3.2rem}
+  .hero{padding-block:8.5rem 4rem;min-height:auto}
+  .hero__art{max-width:460px;margin-inline:auto;width:100%}
+  .hero__chip{right:0}
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee{
+  background:var(--ink);color:var(--cream);overflow:hidden;
+  padding-block:1.05rem;border-block:1px solid rgba(251,247,242,.12);
+}
+.marquee__track{display:flex;gap:3.2rem;width:max-content;animation:slide 34s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee span{font-family:var(--serif);font-size:1.12rem;font-style:italic;white-space:nowrap;display:flex;align-items:center;gap:3.2rem;opacity:.88}
+.marquee span::after{content:"✦";font-style:normal;font-size:.6rem;color:var(--rose);opacity:.9}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about__grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:center}
+.about__media{position:relative}
+.about__img{
+  aspect-ratio:4/4.7;border-radius:16px;overflow:hidden;position:relative;
+  background:linear-gradient(155deg,#EBD8CC,#C9A48F 55%,#9E6C58);
+}
+/* TODO (owner): <img src="images/anet-portrait.jpg" alt="Anet, founder of Beauty by Anet"> */
+.about__img::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(45% 35% at 40% 32%,rgba(255,255,255,.3),transparent 72%);
+}
+.about__sig{
+  position:absolute;right:-1.5rem;bottom:-1.5rem;z-index:2;background:var(--cream);
+  border-radius:var(--r);padding:1.3rem 1.7rem;box-shadow:var(--shadow);text-align:center;
+}
+.about__sig b{display:block;font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--rose-dark);line-height:1}
+.about__sig span{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);margin-top:.5rem;display:block}
+
+.about__body p{color:var(--ink-2)}
+.about__body h3{font-size:1.4rem;margin:1.9rem 0 .7rem;color:var(--ink)}
+.sig-list{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:.95rem}
+.sig-list li{display:flex;gap:.9rem;align-items:flex-start;font-size:.97rem;color:var(--ink-2)}
+.sig-list svg{width:19px;height:19px;flex:none;color:var(--rose);margin-top:.22rem}
+
+@media (max-width:880px){.about__grid{grid-template-columns:1fr;gap:3rem}.about__sig{right:1rem;bottom:-1.2rem}}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.svc__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3.2rem}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap;border:1px solid var(--line);border-radius:100px;padding:.34rem}
+.tab{
+  padding:.72rem 1.35rem;border-radius:100px;font-size:.7rem;letter-spacing:.17em;
+  text-transform:uppercase;font-weight:500;color:var(--muted);transition:.35s;
+}
+.tab:hover{color:var(--ink)}
+.tab.active{background:var(--ink);color:var(--cream)}
+.tabpanel{display:none;animation:fade .55s var(--ease)}
+.tabpanel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+.svc-group+.svc-group{margin-top:2.6rem}
+.svc-group h3{
+  font-size:1.55rem;margin-bottom:.35rem;display:flex;align-items:baseline;gap:.7rem;
+}
+.svc-group h3 span{font-family:var(--sans);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.svc-note{font-size:.87rem;color:var(--muted);margin-bottom:1.1rem}
+
+.menu{border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:1fr auto;gap:1.4rem;align-items:baseline;
+  padding:1.15rem .2rem;border-bottom:1px solid var(--line);transition:padding-left .4s var(--ease);
+}
+.row:hover{padding-left:.7rem}
+.row__name{font-family:var(--serif);font-size:1.32rem;line-height:1.25}
+.row__name em{font-style:normal;font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--rose-dark);
+  font-family:var(--sans);font-weight:500;margin-left:.55rem;white-space:nowrap}
+.row__desc{font-size:.85rem;color:var(--muted);margin-top:.2rem;max-width:52ch}
+.row__price{font-family:var(--serif);font-size:1.4rem;white-space:nowrap;color:var(--ink);font-variant-numeric:tabular-nums}
+.row__price small{font-family:var(--sans);font-size:.66rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);display:block;text-align:right}
+.row--muted .row__price{color:var(--muted)}
+
+/* service cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:1.35rem;margin-top:3.4rem}
+.card{
+  background:var(--cream);border:1px solid var(--line);border-radius:var(--r);
+  padding:1.9rem 1.6rem;display:flex;flex-direction:column;gap:.55rem;
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.card__ico{width:42px;height:42px;border-radius:50%;background:var(--sand);display:grid;place-items:center;margin-bottom:.7rem}
+.card__ico svg{width:20px;height:20px;color:var(--rose-dark)}
+.card h4{font-size:1.32rem}
+.card p{font-size:.9rem;color:var(--muted);flex:1}
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:2.4rem 1.6rem;margin-top:3.4rem;counter-reset:s}
+.step{position:relative;padding-top:1.9rem;border-top:1px solid var(--line)}
+.step::before{
+  counter-increment:s;content:"0" counter(s);
+  font-family:var(--serif);font-size:.86rem;letter-spacing:.1em;color:var(--rose);
+  position:absolute;top:-.72rem;background:var(--sand);padding:0 .55rem;
+}
+.section--sand .step::before{background:var(--cream-2)}
+.step h4{font-size:1.28rem;margin-bottom:.45rem}
+.step p{font-size:.9rem;color:var(--ink-2)}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin-top:3rem}
+.gal__i{
+  position:relative;aspect-ratio:1;overflow:hidden;border-radius:10px;background:var(--sand);
+  display:grid;place-items:center;
+}
+.gal__i:nth-child(1){aspect-ratio:1;grid-row:span 2}
+.gal__i:nth-child(6){grid-column:span 2}
+.gal__i::before{content:"";position:absolute;inset:0;transition:transform 1s var(--ease)}
+.gal__i:nth-child(1)::before{background:linear-gradient(150deg,#EBD6C8,#B5836D)}
+.gal__i:nth-child(2)::before{background:linear-gradient(150deg,#F0E0D4,#C69C86)}
+.gal__i:nth-child(3)::before{background:linear-gradient(150deg,#E4CCC0,#A87360)}
+.gal__i:nth-child(4)::before{background:linear-gradient(150deg,#F3E6DA,#CBA894)}
+.gal__i:nth-child(5)::before{background:linear-gradient(150deg,#E8D3C6,#AF7D69)}
+.gal__i:nth-child(6)::before{background:linear-gradient(150deg,#F1E2D7,#BE9179)}
+.gal__i:nth-child(7)::before{background:linear-gradient(150deg,#E2C8BB,#A16F5C)}
+.gal__i:nth-child(8)::before{background:linear-gradient(150deg,#EFE0D5,#C2977F)}
+.gal__i:hover::before{transform:scale(1.07)}
+.gal__tag{
+  position:relative;z-index:2;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--cream);background:rgba(43,35,32,.42);backdrop-filter:blur(4px);
+  padding:.4rem .85rem;border-radius:100px;opacity:0;transform:translateY(8px);
+  transition:.5s var(--ease);
+}
+.gal__i:hover .gal__tag{opacity:1;transform:none}
+/* TODO (owner): replace each .gal__i with a real photo:
+   <div class="gal__i"><img src="images/work-01.jpg" alt="Volume lash set"><span class="gal__tag">Volume</span></div> */
+.gal__note{text-align:center;font-size:.83rem;color:var(--muted);margin-top:1.6rem}
+
+@media (max-width:760px){
+  .gal{grid-template-columns:repeat(2,1fr)}
+  .gal__i:nth-child(1){grid-row:span 1}
+  .gal__i:nth-child(6){grid-column:span 1}
+}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.quotes{position:relative;max-width:840px;margin-inline:auto}
+.qslide{display:none;text-align:center;padding-inline:1rem}
+.qslide.active{display:block;animation:qin .7s var(--ease)}
+@keyframes qin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.qstars{display:flex;justify-content:center;gap:.28rem;color:var(--gold);margin-bottom:1.5rem}
+.qstars svg{width:17px;height:17px}
+.qslide blockquote{
+  font-family:var(--serif);font-size:clamp(1.4rem,1.05rem + 1.6vw,2.15rem);
+  line-height:1.38;font-style:italic;color:var(--ink);margin:0 0 1.5rem;
+}
+.qslide figcaption{font-size:.73rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.qnav{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:2.6rem}
+.qnav button{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.4s var(--ease)}
+.qnav button:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);transform:translateY(-2px)}
+.qnav svg{width:15px;height:15px}
+.qdots{display:flex;gap:.5rem}
+.qdot{width:7px;height:7px;border-radius:50%;background:var(--line);transition:.4s}
+.qdot.active{background:var(--rose);width:22px;border-radius:100px}
+
+/* ============================================================
+   INSTAGRAM STRIP
+   ============================================================ */
+.ig{display:grid;grid-template-columns:repeat(6,1fr);gap:.7rem;margin-top:2.8rem}
+.ig a{
+  position:relative;aspect-ratio:1;overflow:hidden;border-radius:10px;background:var(--sand);
+  display:grid;place-items:center;
+}
+.ig a::before{content:"";position:absolute;inset:0;background:linear-gradient(150deg,#E9D5C8,#B0806A);transition:transform 1s var(--ease)}
+.ig a:nth-child(2n)::before{background:linear-gradient(150deg,#F1E3D8,#C49C85)}
+.ig a:nth-child(3n)::before{background:linear-gradient(150deg,#E3CAC0,#A6725E)}
+.ig a:hover::before{transform:scale(1.08)}
+.ig svg{position:relative;z-index:2;width:22px;height:22px;color:var(--cream);opacity:0;transition:.45s var(--ease);transform:scale(.7)}
+.ig a:hover svg{opacity:1;transform:none}
+.ig__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.handle{font-family:var(--serif);font-size:clamp(1.3rem,1.1rem + .9vw,1.8rem);display:flex;align-items:center;gap:.6rem}
+.handle svg{width:19px;height:19px;color:var(--rose)}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq{max-width:800px;margin-inline:auto;margin-top:2.8rem}
+.q{border-bottom:1px solid var(--line)}
+.q summary{
+  list-style:none;cursor:pointer;padding:1.5rem 2.6rem 1.5rem 0;position:relative;
+  font-family:var(--serif);font-size:clamp(1.1rem,1.02rem + .4vw,1.32rem);line-height:1.35;
+  transition:color .3s;
+}
+.q summary::-webkit-details-marker{display:none}
+.q summary:hover{color:var(--rose-dark)}
+.q summary::after{
+  content:"";position:absolute;right:6px;top:50%;width:11px;height:11px;
+  border-right:1px solid var(--rose);border-bottom:1px solid var(--rose);
+  transform:translateY(-70%) rotate(45deg);transition:transform .45s var(--ease);
+}
+.q[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.q__a{padding-bottom:1.6rem;padding-right:2.6rem;color:var(--ink-2);font-size:.97rem;max-width:66ch}
+
+/* ============================================================
+   BOOKING / CONTACT
+   ============================================================ */
+.book{background:var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.book::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background:radial-gradient(70% 60% at 82% 8%,rgba(184,127,109,.32),transparent 62%),
+             radial-gradient(60% 60% at 6% 96%,rgba(176,141,87,.2),transparent 60%);
+}
+.book .wrap{position:relative}
+.book .eyebrow{color:var(--blush)}
+.book .h2{color:var(--cream)}
+.book .h2 em{color:var(--blush)}
+.book .lede{color:rgba(251,247,242,.72)}
+
+.book__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2.5rem,5vw,4.5rem);margin-top:3.4rem}
+.book__list{list-style:none;padding:0;margin:2.2rem 0 0;display:grid;gap:1.5rem}
+.book__list li{display:flex;gap:1.1rem;align-items:flex-start}
+.book__list svg{width:19px;height:19px;flex:none;color:var(--blush);margin-top:.25rem}
+.book__list b{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blush);font-weight:500}
+.book__list a,.book__list span{font-size:1.02rem;color:var(--cream);font-weight:300}
+.book__list a:hover{color:var(--blush)}
+
+.form{
+  background:rgba(251,247,242,.055);border:1px solid rgba(251,247,242,.16);
+  border-radius:20px;padding:clamp(1.6rem,3vw,2.4rem);backdrop-filter:blur(6px);
+}
+.form h3{font-size:1.75rem;margin-bottom:.4rem}
+.form>p{font-size:.88rem;color:rgba(251,247,242,.6);margin-bottom:1.6rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blush);margin-bottom:.5rem;font-weight:500}
+.field input,.field select,.field textarea{
+  width:100%;padding:.88rem 1rem;border-radius:10px;font:inherit;font-size:.95rem;font-weight:300;
+  background:rgba(251,247,242,.07);border:1px solid rgba(251,247,242,.2);color:var(--cream);
+  transition:border-color .35s,background .35s;
+}
+.field select option{background:#2B2320;color:var(--cream)}
+.field textarea{resize:vertical;min-height:88px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blush);background:rgba(251,247,242,.12)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(251,247,242,.35)}
+.field__err{display:none;font-size:.74rem;color:#E9A99A;margin-top:.35rem;letter-spacing:.04em}
+.field.invalid input,.field.invalid select{border-color:#C9705C}
+.field.invalid .field__err{display:block}
+
+.form__row{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.form .btn{width:100%;margin-top:.6rem}
+.form__note{font-size:.74rem;color:rgba(251,247,242,.5);text-align:center;margin:1rem 0 0}
+.form__ok{
+  display:none;text-align:center;padding:1rem 0 0;
+}
+.form__ok b{font-family:var(--serif);font-size:1.5rem;display:block;color:var(--blush)}
+.form__ok p{font-size:.9rem;color:rgba(251,247,242,.72);margin-top:.4rem}
+.form.sent .form__fields,.form.sent .btn,.form.sent .form__note{display:none}
+.form.sent .form__ok{display:block}
+
+@media (max-width:880px){
+  .book__grid{grid-template-columns:1fr}
+  .form__row{grid-template-columns:1fr}
+}
+@media (max-width:640px){.ig{grid-template-columns:repeat(3,1fr)}}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:var(--cream);padding-block:3.6rem 2.2rem;border-top:1px solid var(--line)}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.4rem}
+.foot h4{font-family:var(--sans);font-size:.66rem;letter-spacing:.26em;text-transform:uppercase;color:var(--rose-dark);font-weight:500;margin-bottom:1.1rem}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:.6rem}
+.foot a{font-size:.94rem;color:var(--ink-2);transition:color .3s}
+.foot a:hover{color:var(--rose-dark)}
+.hours{font-size:.9rem;color:var(--ink-2)}
+.hours div{display:flex;justify-content:space-between;gap:1rem;padding:.28rem 0;border-bottom:1px dashed var(--line)}
+.hours div:last-child{border-bottom:0}
+.hours span:last-child{white-space:nowrap;color:var(--ink)}
+.hours .closed{color:var(--muted)}
+
+.socials{display:flex;gap:.6rem;margin-top:1.3rem}
+.socials a{
+  width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;transition:.4s var(--ease);
+}
+.socials a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);transform:translateY(-3px)}
+.socials svg{width:17px;height:17px}
+
+.foot__bar{
+  margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  font-size:.78rem;color:var(--muted);
+}
+.foot__bar a:hover{color:var(--ink)}
+
+@media (max-width:900px){.foot{grid-template-columns:1fr 1fr;gap:2.2rem}}
+@media (max-width:560px){.foot{grid-template-columns:1fr}}
+
+/* ============================================================
+   STICKY MOBILE BOOK BAR
+   ============================================================ */
+.bookbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:99;display:none;gap:.7rem;
+  padding:.75rem 1rem calc(.75rem + env(safe-area-inset-bottom));
+  background:rgba(251,247,242,.95);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+  transform:translateY(110%);transition:transform .5s var(--ease);
+}
+.bookbar.show{transform:none}
+.bookbar .btn{flex:1;padding:.95rem 1rem;font-size:.7rem}
+.bookbar a.b2{flex:0 0 auto;padding:.95rem 1.15rem}
+.bookbar svg{width:16px;height:16px}
+@media (max-width:760px){
+  .bookbar{display:flex}
+  body{padding-bottom:76px}
+}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:6.5rem;transform:translate(-50%,20px);z-index:200;
+  background:var(--ink);color:var(--cream);padding:.95rem 1.5rem;border-radius:100px;
+  font-size:.83rem;letter-spacing:.05em;box-shadow:var(--shadow);
+  opacity:0;pointer-events:none;transition:.45s var(--ease);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:760px){.toast{bottom:6rem}}
+</style>
+</head>
+
+<body>
+
+<!-- ===================== ICONS ===================== -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.15" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15.5 3h-2.6A4 4 0 0 0 9 7v3H6.5v3H9v8h3v-8h2.6l.5-3H12V7.4c0-.8.4-1.4 1.4-1.4h2.1z"/>
+  </symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 20.5l1.4-4.6A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 9.2c.3 2.2 2.6 4.4 4.9 4.8.7.1 1.4-.5 1.5-1.2"/>
+  </symbol>
+  <symbol id="i-tik" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 4v10.2a2.8 2.8 0 1 1-2.2-2.7"/><path d="M14 4.2c1.6 0 3 1 4.2 2.4"/>
+  </symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 16.4v2.6a2 2 0 0 1-2.2 2 19.6 19.6 0 0 1-8.5-3 19.3 19.3 0 0 1-6-6 19.6 19.6 0 0 1-3-8.6A2 2 0 0 1 3.3 1h2.6a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L7.5 8.4a15.6 15.6 0 0 0 6 6l.8-.6a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 1.9"/>
+  </symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 10.5c0 5.6-8 12-8 12s-8-6.4-8-12a8 8 0 0 1 16 0"/><circle cx="12" cy="10.3" r="2.9"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v5.3l3.4 2"/>
+  </symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5-5.9-3.1-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+  <symbol id="i-lash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3 13c3-4.5 6-6.5 9-6.5s6 2 9 6.5"/><path d="M8 13.2V8.6M12 13.2V6.8M16 13.2V8.6"/></symbol>
+  <symbol id="i-lift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 16h16"/><path d="M8 16c0-4 1.8-7 4-7s4 3 4 7"/><path d="M3 19.5h18"/></symbol>
+  <symbol id="i-brow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 15c3.5-4.5 6.8-6.5 8.5-6.5s5 2 8.5 6.5"/><path d="M6.5 12.5 8 8M10 11.4 10.8 6.5M13.6 11.2 14.6 6.4M17 12.2 18.2 7.8"/></symbol>
+  <symbol id="i-tint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 20c0-3.5 2.6-6 6-6s6 2.5 6 6"/><path d="M12 4v4M4.9 7.2l2.4 2.2M19.1 7.2l-2.4 2.2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7.5-4.7-7.5-9.6A4.4 4.4 0 0 1 12 7.6a4.4 4.4 0 0 1 7.5 2.8C19.5 15.3 12 20 12 20"/></symbol>
+  <symbol id="i-arr-l" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 5.5-7 6.5 7 6.5"/></symbol>
+  <symbol id="i-arr-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9.5 5.5 7 6.5-7 6.5"/></symbol>
+</svg>
+
+<!-- ===================== HEADER ===================== -->
+<header class="header" id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Beauty by Anet — home">
+      <b>BEAUTY BY ANET</b>
+      <small>Sherman Oaks · CA</small>
+    </a>
+
+    <nav class="navlinks" id="navlinks" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <!-- TODO (owner): replace href with the real booking link (Square / Vagaro / Fresha) -->
+      <a class="btn btn--fill" href="#book">Book Now</a>
+    </nav>
+
+    <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <!-- TODO (owner): rewrite the headline + subhead in Anet's own words -->
+      <h1>Lashes that look<br>like <em>yourself</em>,<br>just more.</h1>
+      <p class="lede">A lash &amp; brow studio in Sherman Oaks where every set is mapped to your eye shape and your natural beauty — never a one-size-fits-all package.</p>
+
+      <div class="hero__cta">
+        <a class="btn btn--fill" href="#book">
+          Book Your Appointment
+          <svg aria-hidden="true"><use href="#i-arr-r"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#services">View Menu &amp; Prices</a>
+      </div>
+
+      <div class="hero__trust">
+        <!-- TODO (owner): replace with the real rating + review count from Yelp -->
+        <div><b>5.0</b><span>Yelp Rating</span></div>
+        <div><b>100+</b><span>Happy Clients</span></div>
+        <div><b>6 yrs</b><span>In the Studio</span></div>
+        <div><b>Vented</b><span>Sanitized Tools</span></div>
+      </div>
+    </div>
+
+    <div class="hero__art">
+      <div class="hero__art-frame" role="img" aria-label="Placeholder for a photo of a fresh lash set"></div>
+      <div class="hero__chip"><i>Now booking</i> · New sets</div>
+      <div class="hero__badge">
+        <b>Lash lift + tint combo</b>
+        <p>Our most-booked refresh — curled, darker lashes in one appointment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <!-- TODO (owner): duplicate the list, keep 2x for seamless loop -->
+    <span>Volume Lash Sets</span>
+    <span>Classic Sets</span>
+    <span>Keratin Lash Lifts</span>
+    <span>Brow Lamination</span>
+    <span>Brow Shaping &amp; Tint</span>
+    <span>Private Studio in Sherman Oaks</span>
+    <span>Volume Lash Sets</span>
+    <span>Classic Sets</span>
+    <span>Keratin Lash Lifts</span>
+    <span>Brow Lamination</span>
+    <span>Brow Shaping &amp; Tint</span>
+    <span>Private Studio in Sherman Oaks</span>
+  </div>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="section" id="about">
+  <div class="wrap about__grid">
+    <div class="about__media" data-reveal>
+      <div class="about__img" role="img" aria-label="Placeholder for a photo of Anet"></div>
+      <!-- TODO (owner): <img class="about__img" src="images/anet.jpg" alt="Anet, lash artist and founder"> -->
+      <div class="about__sig">
+        <b>Anet</b>
+        <span>Founder &amp; Lash Artist</span>
+      </div>
+    </div>
+
+    <div class="about__body" data-reveal>
+      <p class="eyebrow">Meet Anet</p>
+      <h2 class="h2">Beauty that looks like you walked in — <em>because you did.</em></h2>
+
+      <!-- TODO (owner): replace with the real bio / About text from Yelp or Instagram -->
+      <p style="margin-top:1.6rem">I'm Anet — a lash and brow artist working out of a private, by-appointment studio in Sherman Oaks. I started doing lashes because I was tired of sets that looked great for one week and then fell apart by the next.</p>
+      <p>My approach is simple: I map every set to your eye shape, your natural lash strength and how much time you actually want to spend on your mornings. Nothing heavy, nothing overdone — just lashes that still look good on day ten.</p>
+      <p>I take my time with every client, and I never rush an appointment. That's why my books fill quickly.</p>
+
+      <ul class="sig-list">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><strong>One artist, start to finish.</strong> No hand-offs — you work with me at every visit, so I learn your lashes and keep them consistent.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><strong>Tailored mapping, not a package.</strong> We'll go over your desired look, your natural lashes and your aftercare before we start.</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><span><strong>Sanitary, private studio.</strong> Fresh or single-use implements, vented workstation, and a calm room you won't be sharing.</span></span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span><strong>Honest aftercare guidance.</strong> I'll tell you exactly how long your set should last and how to get the most out of it.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="section section--tint" id="services">
+  <div class="wrap">
+    <div class="svc__head">
+      <div class="head" data-reveal>
+        <p class="eyebrow">Services &amp; Pricing</p>
+        <h2 class="h2">The full menu, <em>no surprises.</em></h2>
+        <p class="lede">Every price below is a starting point and is confirmed at your consultation — lash density, length and your natural lash strength all affect the final set.</p>
+      </div>
+
+      <!-- TODO (owner): add/remove tabs to match the real service menu -->
+      <div class="tabs" role="tablist" aria-label="Service categories" data-reveal>
+        <button class="tab active" role="tab" aria-selected="true" aria-controls="p-lash" id="t-lash">Lashes</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-brow" id="t-brow">Brows</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-add" id="t-add">Add-ons</button>
+      </div>
+    </div>
+
+    <!-- ---------- LASHES ---------- -->
+    <div class="tabpanel active" id="p-lash" role="tabpanel" aria-labelledby="t-lash">
+      <div class="svc-group">
+        <h3>Eyelash Extensions</h3>
+        <p class="svc-note">Prices are for a full set. Refills are based on how much growth you have left.</p>
+        <!-- TODO (owner): replace all placeholder prices -->
+        <div class="menu">
+          <div class="row">
+            <div><div class="row__name">Classic Set <em>Natural</em></div><div class="row__desc">One extension per natural lash. The most effortless, everyday look.</div></div>
+            <div class="row__price">$<span data-price>145</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Classic Refill <em>2–3 wks</em></div><div class="row__desc">For sets applied at Beauty by Anet.</div></div>
+            <div class="row__price">$<span data-price>75</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Hybrid Set <em>Natural + Volume</em></div><div class="row__desc">Hand-mapped mix of classic and volume fans. Soft texture with visible fullness.</div></div>
+            <div class="row__price">$<span data-price>175</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Hybrid Refill <em>2–3 wks</em></div><div class="row__desc">For sets applied at Beauty by Anet.</div></div>
+            <div class="row__price">$<span data-price>95</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Volume Set <em>Full &amp; Fluffy</em></div><div class="row__desc">Lightweight fans, mapped for weightless fullness. Ideal for sparse or fine lashes.</div></div>
+            <div class="row__price">$<span data-price>195</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Volume Refill <em>2–3 wks</em></div><div class="row__desc">For sets applied at Beauty by Anet.</div></div>
+            <div class="row__price">$<span data-price>105</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Mega Volume Set <em>Extra Dense</em></div><div class="row__desc">Maximum density with very light fans. For clients wanting dramatic fullness.</div></div>
+            <div class="row__price">$<span data-price>245</span></div>
+          </div>
+          <div class="row row--muted">
+            <div><div class="row__name">Weekly Touch-Up</div><div class="row__desc">Small tidy-up if you've fallen more than 3 weeks past your fill window.</div></div>
+            <div class="row__price">$<span data-price>65</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-group">
+        <h3>Lifts &amp; Tint</h3>
+        <div class="menu">
+          <div class="row">
+            <div><div class="row__name">Keratin Lash Lift <em>60–75 min</em></div><div class="row__desc">Your own lashes lifted and curled at the root. Lasts 6–8 weeks with no maintenance.</div></div>
+            <div class="row__price">$<span data-price>125</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Lash Lift + Tint <em>Most booked</em></div><div class="row__desc">Lift plus a gentle tint for a darker, more defined lash line.</div></div>
+            <div class="row__price">$<span data-price>150</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Lash Tint <em>Add-on</em></div><div class="row__desc">Dye applied to the lash line. Pairs beautifully with a lift.</div></div>
+            <div class="row__price">$<span data-price>35</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Extension Removal <em>Add-on</em></div><div class="row__desc">Gentle soak-off. Removal is always required before a new set with another artist.</div></div>
+            <div class="row__price">$<span data-price>40</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- BROWS ---------- -->
+    <div class="tabpanel" id="p-brow" role="tabpanel" aria-labelledby="t-brow">
+      <div class="svc-group">
+        <h3>Brow Services</h3>
+        <p class="svc-note">First-time pricing applies to your first visit; returning clients are charged the return rate.</p>
+        <!-- TODO (owner): replace with the real brow menu -->
+        <div class="menu">
+          <div class="row">
+            <div><div class="row__name">Brow Shape <em>Wax + Tweeze</em></div><div class="row__desc">Mapped to your face shape, finished with tweezing. Never over-thinned.</div></div>
+            <div class="row__price">$<span data-price>35</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Brow Threading <em>Precision</em></div><div class="row__desc">Threading for the cleanest, softest edge with no lifting product.</div></div>
+            <div class="row__price">$<span data-price>30</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Brow Shape + Tint</div><div class="row__desc">Shape plus a custom tint to match your hair colour and soften the need for daily product.</div></div>
+            <div class="row__price">$<span data-price>55</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Brow Henna <em>Longer lasting</em></div><div class="row__desc"> Stain-only colour that lasts ~2 weeks on skin and up to 4 weeks on hair.</div></div>
+            <div class="row__price">$<span data-price>65</span></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Brow Lamination <em>4–8 wks</em></div><div class="row__desc">Lifts and sets unruly brow hairs flat. Tint included in the service.</div></div>
+            <div class="row__price">$<span data-price>95</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-group">
+        <h3>Combos</h3>
+        <div class="menu">
+          <div class="row">
+            <div><div class="row__name">Lash Set + Brow Shape <em>Save $20</em></div><div class="row__desc">Book both in one appointment and save.</div></div>
+            <div class="row__price">$<span data-price>155</span><small>Combo</small></div>
+          </div>
+          <div class="row">
+            <div><div class="row__name">Lash Lift + Brow Lamination <em>Save $25</em></div><div class="row__desc">Our full refresh appointment — eyes and brows in one visit.</div></div>
+            <div class="row__price">$<span data-price>195</span><small>Combo</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- ADD-ONS ---------- -->
+    <div class="tabpanel" id="p-add" role="tabpanel" aria-labelledby="t-add">
+      <div class="svc-group">
+        <h3>Add-ons &amp; Extras</h3>
+        <p class="svc-note">Added to any lash or brow service at the time of your appointment.</p>
+        <!-- TODO (owner): replace with the real add-on list -->
+        <div class="menu">
+          <div class="row"><div><div class="row__name">Lash Tint</div><div class="row__desc">Gentle dye for a darker lash line.</div></div><div class="row__price">+$<span data-price>35</span></div></div>
+          <div class="row"><div><div class="row__name">Brow Tint</div><div class="row__desc">Custom shade matched to your hair.</div></div><div class="row__price">+$<span data-price>20</span></div></div>
+          <div class="row"><div><div class="row__name">Brow Wax</div><div class="row__desc">Shape on its own.</div></div><div class="row__price">+$<span data-price>25</span></div></div>
+          <div class="row"><div><div class="row__name">Lash Removal</div><div class="row__desc">Soak-off of a full set, ours or elsewhere.</div></div><div class="row__price">+$<span data-price>40</span></div></div>
+          <div class="row"><div><div class="row__name">Extra Sleep Mask</div><div class="row__desc">For the lash-lift appointments. Free to take home.</div></div><div class="row__price">Free</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- FEATURE CARDS ---------- -->
+    <div class="cards">
+      <div class="card" data-reveal>
+        <div class="card__ico"><svg aria-hidden="true"><use href="#i-lash"/></svg></div>
+        <h4>Extensions</h4>
+        <p>Classic, hybrid, volume or mega volume — mapped to your eye shape so the set flatters you from day one.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__ico"><svg aria-hidden="true"><use href="#i-lift"/></svg></div>
+        <h4>Keratin Lifts</h4>
+        <p>Your own lashes, lifted at the root. Six to eight weeks of curl with nothing to refill and nothing to remove.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__ico"><svg aria-hidden="true"><use href="#i-brow"/></svg></div>
+        <h4>Brows</h4>
+        <p>Waxing, threading, tinting, henna and lamination — shaped to your face, never to a template.</p>
+      </div>
+      <div class="card" data-reveal>
+        <div class="card__ico"><svg aria-hidden="true"><use href="#i-heart"/></svg></div>
+        <h4>Refills &amp; Fills</h4>
+        <p>Come back every 2–3 weeks and we top up your own set so it stays looking like the day you walked in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="section section--sand">
+  <div class="wrap">
+    <div class="head head--center" data-reveal>
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Four steps, <em>zero stress.</em></h2>
+      <p class="lede">Your first visit takes a little longer — that's on purpose. After that, refills are quick and easy.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step" data-reveal>
+        <h4>Reach out</h4>
+        <p>Fill in the booking form or send a DM. Tell me what you're thinking — a photo reference is welcome but never required.</p>
+      </div>
+      <div class="step" data-reveal>
+        <h4>Consultation &amp; mapping</h4>
+        <p>We go over your desired look, your natural lashes and your lifestyle, then I map your set to your eye shape on the spot.</p>
+      </div>
+      <div class="step" data-reveal>
+        <h4>The appointment</h4>
+        <p>You're lying down in a private, vented room for 60–120 minutes. Most clients fall asleep — that's a good sign.</p>
+      </div>
+      <div class="step" data-reveal>
+        <h4>Aftercare &amp; refill</h4>
+        <p>You leave with a written aftercare plan. Book your 2–3 week refill before you leave and you'll always have a spot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="head head--center" data-reveal>
+      <p class="eyebrow">The Look Book</p>
+      <h2 class="h2">Real clients, <em>real results.</em></h2>
+      <p class="lede">Every set photographed fresh out of the chair. Filter through the styles below to see what we can build for you.</p>
+    </div>
+
+    <div class="gal" data-reveal>
+      <!-- TODO (owner): replace all 8 tiles with real client photos (recommended 1:1 crops) -->
+      <div class="gal__i"><span class="gal__tag">Volume</span></div>
+      <div class="gal__i"><span class="gal__tag">Classic</span></div>
+      <div class="gal__i"><span class="gal__tag">Hybrid</span></div>
+      <div class="gal__i"><span class="gal__tag">Lash Lift</span></div>
+      <div class="gal__i"><span class="gal__tag">Brow Lamination</span></div>
+      <div class="gal__i"><span class="gal__tag">Brow Shape + Tint</span></div>
+      <div class="gal__i"><span class="gal__tag">Mega Volume</span></div>
+      <div class="gal__i"><span class="gal__tag">Henna Brows</span></div>
+    </div>
+
+    <p class="gal__note">* Results vary by lash and brow type. Always follow your aftercare guide to get the longest-lasting set.</p>
+  </div>
+</section>
+
+<!-- ===================== REVIEWS ===================== -->
+<section class="section section--tint" id="reviews">
+  <div class="wrap">
+    <div class="head head--center" data-reveal>
+      <p class="eyebrow">Client Love</p>
+      <h2 class="h2">What my clients <em>say.</em></h2>
+    </div>
+
+    <div class="quotes" data-reveal>
+      <!-- TODO (owner): replace with real quotes pulled from Yelp/Google. Keep 3, attribute by first name + initial. -->
+      <figure class="qslide active">
+        <div class="qstars" aria-label="5 out of 5 stars">
+          <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+        </div>
+        <blockquote>"Anet is so gentle and so thorough. I came in with lashes I'd had done elsewhere that were hurting my natural lashes and she fixed everything. My set is gorgeous and it's been three weeks and still perfect."</blockquote>
+        <figcaption>Sarah M. · Volume Set</figcaption>
+      </figure>
+
+      <figure class="qslide">
+        <div class="qstars" aria-label="5 out of 5 stars">
+          <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+        </div>
+        <blockquote>"I did the keratin lift and honestly I've stopped wearing mascara. Anet explained every step and the whole thing was so relaxing. Booking the next one before I left."</blockquote>
+        <figcaption>Jessica R. · Keratin Lash Lift</figcaption>
+      </figure>
+
+      <figure class="qslide">
+        <div class="qstars" aria-label="5 out of 5 stars">
+          <svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg><svg aria-hidden="true"><use href="#i-star"/></svg>
+        </div>
+        <blockquote>"My brows have never looked this good. She mapped them to my face instead of just cleaning up whatever was there. I drive in from Encino and it's absolutely worth it."</blockquote>
+        <figcaption>Priya K. · Brow Lamination</figcaption>
+      </figure>
+
+      <div class="qnav">
+        <button id="qPrev" aria-label="Previous review"><svg aria-hidden="true"><use href="#i-arr-l"/></svg></button>
+        <div class="qdots" id="qdots" role="tablist" aria-label="Reviews"></div>
+        <button id="qNext" aria-label="Next review"><svg aria-hidden="true"><use href="#i-arr-r"/></svg></button>
+      </div>
+    </div>
+
+    <!-- TODO (owner): add the real Yelp / Google rating badges here -->
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:3rem" data-reveal>
+      <a class="btn btn--ghost" href="https://www.yelp.com/biz/beauty-by-anet-sherman-oaks" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-star"/></svg> Read Us on Yelp
+      </a>
+      <a class="btn btn--ghost" href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-ig"/></svg> See Us on Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INSTAGRAM ===================== -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="ig__head" data-reveal>
+      <div class="handle">
+        <svg aria-hidden="true"><use href="#i-ig"/></svg>
+        <!-- TODO (owner): update handle + link -->
+        @beautybyanet
+      </div>
+      <a class="btn btn--ghost" href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener">
+        Follow
+        <svg aria-hidden="true"><use href="#i-arr-r"/></svg>
+      </a>
+    </div>
+
+    <!-- TODO (owner): point each tile at a real post, or replace with an embed widget -->
+    <div class="ig" data-reveal>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+      <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram post"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section section--tint" id="faq">
+  <div class="wrap">
+    <div class="head head--center" data-reveal>
+      <p class="eyebrow">Good to know</p>
+      <h2 class="h2">Questions, <em>answered.</em></h2>
+    </div>
+
+    <!-- TODO (owner): edit the answers below to match your real policies -->
+    <div class="faq" data-reveal>
+      <details class="q" open>
+        <summary>Do I need a patch test before getting lash extensions?</summary>
+        <div class="q__a">Not for most people, but if you've had a reaction to adhesives or tape before, tell me before we start. We use a latex-free, medical-grade adhesive and I'll do a small patch if you'd like the peace of mind. Unpatched lashes mean you're ready for a full set right away.</div>
+      </details>
+      <details class="q">
+        <summary>How long do lash extensions actually last?</summary>
+        <div class="q__a">Your natural lashes grow about 0.1mm per day, so a full set typically lasts 4–6 weeks while it grows out. Most clients book a refill every 2–3 weeks to keep the set looking brand new. I'll give you an aftercare guide so your retention is as good as possible.</div>
+      </details>
+      <details class="q">
+        <summary>Do I need a full removal before booking a new set?</summary>
+        <div class="q__a">Yes — if you're coming from another artist and still have lashes on, please book a removal first. It protects your natural lashes and usually takes 20–30 minutes on its own. It's a quick add-on and I'll always tell you honestly if a removal is needed.</div>
+      </details>
+      <details class="q">
+        <summary>Can I get lashes and brows in the same appointment?</summary>
+        <div class="q__a">Absolutely — that's what our combos are for, and you'll save compared with booking separately. Book the lash set + brow shape combo, or the full refresh (lash lift + brow lamination) if you'd rather skip extensions entirely.</div>
+      </details>
+      <details class="q">
+        <summary>Where exactly are you located?</summary>
+        <div class="q__a">
+          <!-- TODO (owner): replace with the real address -->
+          We're a private, by-appointment studio in Sherman Oaks. Full address and directions are on the
+          <a href="https://www.yelp.com/biz/beauty-by-anet-sherman-oaks" target="_blank" rel="noopener" style="text-decoration:underline">Yelp listing</a> — parking is available in the building.
+        </div>
+      </details>
+      <details class="q">
+        <summary>What payment methods do you accept?</summary>
+        <div class="q__a">
+          <!-- TODO (owner): confirm real payment methods -->
+          We accept cash, card (Apple Pay / Google Pay), Zelle and Venmo. A card is the easiest since it holds your appointment slot, but any method works.
+        </div>
+      </details>
+      <details class="q">
+        <summary>What is your cancellation policy?</summary>
+        <div class="q__a">Please give at least 24 hours notice to reschedule or cancel. Late cancellations and no-shows are charged 50% of the service total, since that time is reserved exclusively for you.</div>
+      </details>
+      <details class="q">
+        <summary>I'm nervous about getting my first set. Is that normal?</summary>
+        <div class="q__a">Completely normal, and the most common thing I hear. There's no pressure to close your eyes — many clients like to keep them open and talk. I work at a pace you set, and I'll talk you through exactly what I'm doing the whole time.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOKING / CONTACT ===================== -->
+<section class="section book" id="book">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Book your visit</p>
+      <h2 class="h2">Let's get you <em>booked in.</em></h2>
+      <p class="lede">Send a request and I'll reply within 24 hours with available times. For same-day availability, text or call and mention Beauty by Anet.</p>
+    </div>
+
+    <div class="book__grid">
+      <div data-reveal>
+        <ul class="book__list">
+          <li>
+            <svg aria-hidden="true"><use href="#i-phone"/></svg>
+            <div><b>Call / Text</b>
+              <!-- TODO (owner): replace with the real phone number -->
+              <a href="tel:+18185550142">(818) 555-0142</a>
+            </div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-pin"/></svg>
+            <div><b>Studio Address</b>
+              <!-- TODO (owner): replace with the real address -->
+              <span>14021 Ventura Blvd, Suite 200<br>Sherman Oaks, CA 91423</span>
+            </div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-clock"/></svg>
+            <div><b>Hours</b>
+              <!-- TODO (owner): confirm real hours -->
+              <span>Tue–Fri: 10am–6pm<br>Saturday: 9am–4pm<br>Sun–Mon: Closed</span>
+            </div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-mail"/></svg>
+            <div><b>Email</b>
+              <!-- TODO (owner): replace with the real email -->
+              <a href="mailto:hello@beautybyanet.com">hello@beautybyanet.com</a>
+            </div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-ig"/></svg>
+            <div><b>Instagram</b>
+              <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener">@beautybyanet</a>
+            </div>
+          </li>
+          <li>
+            <svg aria-hidden="true"><use href="#i-check"/></svg>
+            <div><b>We Accept</b>
+              <!-- TODO (owner): confirm real payment methods -->
+              <span>Cash · Cards · Apple Pay · Zelle · Venmo</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="hero__cta">
+          <!-- TODO (owner): replace with the real booking link -->
+          <a class="btn btn--light" href="#book">Book Online</a>
+          <a class="btn btn--outline-light" href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-ig"/></svg> DM on Instagram
+          </a>
+        </div>
+      </div>
+
+      <!-- ---------- REQUEST FORM ---------- -->
+      <!-- TODO (owner): this form is a front-end demo only (no backend).
+           Wire it to Formspree / Square / a Google Apps Script, or remove it and link straight to the booking page. -->
+      <form class="form" id="bookForm" novalidate data-reveal>
+        <div class="form__fields">
+          <h3>Request an appointment</h3>
+          <p>Takes about 20 seconds — no account needed.</p>
+
+          <div class="form__row">
+            <div class="field" data-field="name">
+              <label for="f-name">Your name</label>
+              <input id="f-name" name="name" type="text" placeholder="Jane Smith" autocomplete="name" required>
+              <p class="field__err">Please tell me your name.</p>
+            </div>
+            <div class="field" data-field="contact">
+              <label for="f-contact">Phone or email</label>
+              <input id="f-contact" name="contact" type="text" placeholder="(818) 555-0123" autocomplete="tel" required>
+              <p class="field__err">A phone or email is required so I can reply.</p>
+            </div>
+          </div>
+
+          <div class="form__row">
+            <div class="field" data-field="service">
+              <label for="f-service">Service</label>
+              <select id="f-service" name="service" required>
+                <option value="">Choose a service…</option>
+                <optgroup label="Lashes">
+                  <option>Classic Set — $145</option>
+                  <option>Classic Refill — $75</option>
+                  <option>Hybrid Set — $175</option>
+                  <option>Hybrid Refill — $95</option>
+                  <option>Volume Set — $195</option>
+                  <option>Volume Refill — $105</option>
+                  <option>Mega Volume Set — $245</option>
+                  <option>Keratin Lash Lift — $125</option>
+                  <option>Lash Lift + Tint — $150</option>
+                </optgroup>
+                <optgroup label="Brows">
+                  <option>Brow Shape — $35</option>
+                  <option>Brow Threading — $30</option>
+                  <option>Brow Shape + Tint — $55</option>
+                  <option>Brow Henna — $65</option>
+                  <option>Brow Lamination — $95</option>
+                </optgroup>
+                <optgroup label="Combos">
+                  <option>Lash Set + Brow Shape — $155</option>
+                  <option>Lash Lift + Brow Lamination — $195</option>
+                </optgroup>
+              </select>
+              <p class="field__err">Please pick a service.</p>
+            </div>
+            <div class="field" data-field="when">
+              <label for="f-when">Preferred day</label>
+              <input id="f-when" name="when" type="date" required>
+              <p class="field__err">Please choose a preferred date.</p>
+            </div>
+          </div>
+
+          <div class="field" data-field="note">
+            <label for="f-note">Anything I should know? <span style="text-transform:none;letter-spacing:0;color:var(--muted)">(optional)</span></label>
+            <textarea id="f-note" name="note" placeholder="First time lashes, looking for something natural, currently wearing another artist's set, etc."></textarea>
+          </div>
+
+          <button class="btn btn--light" type="submit">
+            Send Request
+            <svg aria-hidden="true"><use href="#i-arr-r"/></svg>
+          </button>
+          <p class="form__note">This is a demo form — nothing is actually sent.</p>
+        </div>
+
+        <div class="form__ok" role="status">
+          <svg aria-hidden="true" style="width:38px;height:38px;color:var(--blush);margin-bottom:.6rem"><use href="#i-check"/></svg>
+          <b>Thank you!</b>
+          <p>Your request is in. Anet will reply within 24 hours with available times.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a href="#top" class="brand" style="margin-bottom:1.1rem">
+          <b>BEAUTY BY ANET</b>
+          <small>Sherman Oaks · CA</small>
+        </a>
+        <p style="font-size:.92rem;color:var(--ink-2);max-width:32ch">A private lash &amp; brow studio. Mapped to you, made to last.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+          <a href="https://www.yelp.com/biz/beauty-by-anet-sherman-oaks" target="_blank" rel="noopener" aria-label="Yelp"><svg aria-hidden="true"><use href="#i-star"/></svg></a>
+          <!-- TODO (owner): add real social links here (TikTok, etc.) or remove the extras -->
+          <a href="https://www.instagram.com/beautybyanet/" target="_blank" rel="noopener" aria-label="TikTok"><svg aria-hidden="true"><use href="#i-tik"/></svg></a>
+          <a href="tel:+18185550142" aria-label="Call us"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About Anet</a></li>
+          <li><a href="#services">Services &amp; Pricing</a></li>
+          <li><a href="#gallery">Look Book</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Popular</h4>
+        <ul>
+          <li><a href="#services">Volume Lash Set</a></li>
+          <li><a href="#services">Classic Set</a></li>
+          <li><a href="#services">Keratin Lash Lift</a></li>
+          <li><a href="#services">Brow Lamination</a></li>
+          <li><a href="#book">Book Online</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Hours</h4>
+        <!-- TODO (owner): confirm real hours -->
+        <div class="hours">
+          <div><span>Monday</span><span class="closed">Closed</span></div>
+          <div><span>Tuesday</span><span>10am – 6pm</span></div>
+          <div><span>Wednesday</span><span>10am – 6pm</span></div>
+          <div><span>Thursday</span><span>10am – 6pm</span></div>
+          <div><span>Friday</span><span>10am – 6pm</span></div>
+          <div><span>Saturday</span><span>9am – 4pm</span></div>
+          <div><span>Sunday</span><span class="closed">Closed</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <span>© <span id="yr">2026</span> Beauty by Anet. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy</a> · <a href="#">Cancellation Policy</a> · <a href="https://www.yelp.com/biz/beauty-by-anet-sherman-oaks" target="_blank" rel="noopener">Yelp</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== STICKY MOBILE BOOK BAR ===================== -->
+<div class="bookbar" id="bookbar">
+  <!-- TODO (owner): update tel: number + booking link -->
+  <a class="btn b2" href="tel:+18185550142" aria-label="Call Beauty by Anet"><svg aria-hidden="true"><use href="#i-phone"/></svg></a>
+  <a class="btn btn--fill" href="#book">Book Appointment</a>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $  = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- year ---------- */
+  $("#yr").textContent = new Date().getFullYear();
+
+  /* ---------- header shadow on scroll ---------- */
+  var header = $("#header");
+  var bookbar = $("#bookbar");
+  var bookSection = $("#book");
+  function onScroll() {
+    var y = window.scrollY;
+    header.classList.toggle("stuck", y > 24);
+    bookbar.classList.toggle("show", y > 420);
+    if (bookSection) {
+      var r = bookSection.getBoundingClientRect();
+      bookbar.classList.toggle("show", y > 420 && r.top > window.innerHeight * 0.6);
+    }
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- mobile nav ---------- */
+  var burger = $("#burger");
+  burger.addEventListener("click", function () {
+    var open = document.body.classList.toggle("nav-open");
+    burger.setAttribute("aria-expanded", String(open));
+  });
+  $$("#navlinks a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      document.body.classList.remove("nav-open");
+      burger.setAttribute("aria-expanded", "false");
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && document.body.classList.contains("nav-open")) {
+      document.body.classList.remove("nav-open");
+      burger.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  /* ---------- scroll reveal ---------- */
+  var revealables = $$("[data-reveal]");
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealables.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        var sibs = Array.prototype.slice.call(el.parentNode.children).filter(function (n) {
+          return n.hasAttribute && n.hasAttribute("data-reveal");
+        });
+        var i = Math.min(sibs.indexOf(el), 5);
+        setTimeout(function () { el.classList.add("in"); }, i * 90);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+    revealables.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- service tabs ---------- */
+  var tabs = $$(".tab");
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      tabs.forEach(function (t) {
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
+      $$(".tabpanel").forEach(function (p) { p.classList.remove("active"); });
+      var panel = document.getElementById(tab.getAttribute("aria-controls"));
+      if (panel) panel.classList.add("active");
+    });
+  });
+
+  /* ---------- reviews carousel ---------- */
+  var slides = $$(".qslide");
+  var dotsWrap = $("#qdots");
+  var idx = 0;
+  var timer;
+
+  slides.forEach(function (_, i) {
+    var d = document.createElement("button");
+    d.className = "qdot" + (i === 0 ? " active" : "");
+    d.setAttribute("role", "tab");
+    d.setAttribute("aria-label", "Review " + (i + 1));
+    d.addEventListener("click", function () { go(i); restart(); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = $$(".qdot", dotsWrap);
+
+  function go(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach(function (s, i) { s.classList.toggle("active", i === idx); });
+    dots.forEach(function (d, i) { d.classList.toggle("active", i === idx); });
+  }
+  function restart() { clearInterval(timer); if (!reduced) timer = setInterval(function () { go(idx + 1); }, 7000); }
+  $("#qNext").addEventListener("click", function () { go(idx + 1); restart(); });
+  $("#qPrev").addEventListener("click", function () { go(idx - 1); restart(); });
+  restart();
+
+  /* ---------- toast ---------- */
+  var toastEl = $("#toast");
+  var toastT;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 3600);
+  }
+
+  /* ---------- booking form (demo only) ---------- */
+  var form = $("#bookForm");
+  var today = new Date();
+  var dateInput = $("#f-when");
+  dateInput.min = today.toISOString().slice(0, 10);
+
+  function setInvalid(field, bad) {
+    var wrap = form.querySelector('[data-field="' + field + '"]');
+    if (wrap) wrap.classList.toggle("invalid", bad);
+    return !bad;
+  }
+
+  $$("input, select, textarea", form).forEach(function (el) {
+    el.addEventListener("input",  function () { el.closest(".field") && el.closest(".field").classList.remove("invalid"); });
+    el.addEventListener("change", function () { el.closest(".field") && el.closest(".field").classList.remove("invalid"); });
+  });
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = $("#f-name").value.trim();
+    var contact = $("#f-contact").value.trim();
+    var service = $("#f-service").value;
+    var when = dateInput.value;
+
+    var ok =
+      setInvalid("name", name.length < 2) &&
+      setInvalid("contact", contact.length < 5) &&
+      setInvalid("service", !service) &&
+      setInvalid("when", !when);
+
+    if (!ok) {
+      var firstBad = form.querySelector(".field.invalid input, .field.invalid select");
+      if (firstBad) firstBad.focus();
+      return;
+    }
+
+    var firstName = name.split(/\s+/)[0];
+    form.classList.add("sent");
+    toast("Thanks " + firstName + "! Anet will be in touch within 24 hours.");
+    setTimeout(function () {
+      form.classList.remove("sent");
+      form.reset();
+      dateInput.min = new Date().toISOString().slice(0, 10);
+    }, 9000);
+  });
+
+  /* ---------- anchor offset for fixed header ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      var id = a.getAttribute("href");
+      if (!id || id === "#") return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 84;
+      window.scrollTo({ top: top, behavior: reduced ? "auto" : "smooth" });
+      history.replaceState(null, "", id);
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
